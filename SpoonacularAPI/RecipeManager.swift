@@ -4,6 +4,9 @@
 //
 //  Created by Mitya Kim on 10/25/22.
 //
+//https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=2&apiKey=dc1338c2ac034a59a1bc3f8869e3dc30 - search url
+//https://api.spoonacular.com/recipes/{id}/information?apiKey=dc1338c2ac034a59a1bc3f8869e3dc30 - details url
+//https://api.spoonacular.com/recipes/654959/information?apiKey=dc1338c2ac034a59a1bc3f8869e3dc30 - details url
 
 import UIKit
 
@@ -11,13 +14,13 @@ class RecipeManager {
     
     static let shared = RecipeManager()
     private init() {}
-    
-//https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=dc1338c2ac034a59a1bc3f8869e3dc30
-    
     let baseURL = URL(string: "https://api.spoonacular.com/")
     let recipesComponent = "recipes"
     let complexSearchComponent = "complexSearch"
+    let informationComponent = "information"
     let queryKey = "query"
+    let numberKey = "number"
+    let numberKeyValue = "20"
     let apiKey = "apiKey"
     let apiKeyValue = "dc1338c2ac034a59a1bc3f8869e3dc30"
     
@@ -28,9 +31,11 @@ class RecipeManager {
         let complexSearchURL = recipesURL.appendingPathComponent(complexSearchComponent)
         
         var components = URLComponents(url: complexSearchURL, resolvingAgainstBaseURL: true)
+        
         let query = URLQueryItem(name: queryKey, value: value)
+        let numberQuery = URLQueryItem(name: numberKey, value: numberKeyValue)
         let apiQuery = URLQueryItem(name: apiKey, value: apiKeyValue)
-        components?.queryItems = [query, apiQuery]
+        components?.queryItems = [query, numberQuery, apiQuery]
         
         guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
         
@@ -61,7 +66,7 @@ class RecipeManager {
     }
     
     func fetchImage(recipe: Recipe, completion: @escaping (Result<UIImage, NetworkError>) -> Void) {
-        
+//        guard let image = recipe.imageURL else { return }
         guard let baseURLForImage = URL(string: recipe.imageURL) else { return completion(.failure(.invalidURL)) }
        
         URLSession.shared.dataTask(with: baseURLForImage) { (data, response, error) in
@@ -81,34 +86,38 @@ class RecipeManager {
         }.resume()
     }
     
-//https://api.spoonacular.com/recipes/{id}/information?apiKey=dc1338c2ac034a59a1bc3f8869e3dc30
-    
-//https://api.spoonacular.com/recipes/654959/information?apiKey=dc1338c2ac034a59a1bc3f8869e3dc30
-    
-    //    static func fetchMealDetails(with id: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-    //        guard let baseURLForData = baseURLForData else { return completion(.failure(.invalidURL)) }
-    //
-    //        var components = URLComponents(url: baseURLForData, resolvingAgainstBaseURL: true)
-    //        let dataQuery = URLQueryItem(name: dataKey, value: id)
-    //        components?.queryItems = [dataQuery]
-    //
-    //        guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
-    //
-    //        URLSession.shared.dataTask(with: finalURL) { data, _, error in
-    //            if let error = error {
-    //                return completion(.failure(.thrownError(error)))
-    //            }
-    //
-    //            guard let data = data else { return completion(.failure(.noData)) }
-    //
-    //            do {
-    //                let mealData = try JSONDecoder().decode(MealData.self, from: data)
-    //                let resultOfMealData = mealData.meals[0]
-    //                return completion(.success(resultOfMealData))
-    //            } catch {
-    //                return completion(.failure(.unableToDecode))
-    //            }
-    //        }.resume()
-    //    }
+    func fetchRecipeDetails(with id: Int, completion: @escaping (Result<Details, NetworkError>) -> Void) {
+        guard let baseURL = baseURL else { return completion(.failure(.invalidURL)) }
+        
+        let recipesURL = baseURL.appendingPathComponent(recipesComponent)
+        let idURL = recipesURL.appendingPathComponent("\(id)")
+        let informationURL = idURL.appendingPathComponent(informationComponent)
+        
+        var components = URLComponents(url: informationURL, resolvingAgainstBaseURL: true)
+        
+        let apiQuery = URLQueryItem(name: apiKey, value: apiKeyValue)
+        components?.queryItems = [apiQuery]
+        
+        guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
+        
+        URLSession.shared.dataTask(with: finalURL) { data, _, error in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            
+            guard let data = data else { return completion(.failure(.noData)) }
+            
+            // check url in console
+            print(finalURL)
+            
+            do {
+                let recipeDetails = try JSONDecoder().decode(Details.self, from: data)
+                let resultDetails = recipeDetails
+                return completion(.success(resultDetails))
+            } catch {
+                return completion(.failure(.unableToDecode))
+            }
+        }.resume()
+    }
 }
 

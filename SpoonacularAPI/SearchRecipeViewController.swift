@@ -121,6 +121,7 @@ extension SearchRecipeViewController: UITableViewDelegate, UITableViewDataSource
         let recipe = recipes[indexPath.row]
         let detailVC = DetailsViewController()
         detailVC.recipe = recipe
+        detailVC.id = recipe.id
         self.present(detailVC, animated: true)
     }
 }

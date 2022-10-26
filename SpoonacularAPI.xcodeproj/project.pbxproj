@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BCFFA0D2909DE80000D87FC /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCFFA0C2909DE80000D87FC /* FavoriteViewController.swift */; };
 		3BD99F9F2908A25F0019F278 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99F9E2908A25F0019F278 /* AppDelegate.swift */; };
 		3BD99FA32908A25F0019F278 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FA22908A25F0019F278 /* HomeViewController.swift */; };
 		3BD99FA82908A2610019F278 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD99FA72908A2610019F278 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BCFFA0C2909DE80000D87FC /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		3BD99F9B2908A25F0019F278 /* SpoonacularAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpoonacularAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD99F9E2908A25F0019F278 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BD99FA22908A25F0019F278 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BCFFA092909DD96000D87FC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99FA22908A25F0019F278 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		3BCFFA0A2909DDE4000D87FC /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99FE2290923EC0019F278 /* DetailsViewController.swift */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
+		3BCFFA0B2909DE2E000D87FC /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				3BCFFA0C2909DE80000D87FC /* FavoriteViewController.swift */,
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
 		3BD99F922908A25F0019F278 = {
 			isa = PBXGroup;
 			children = (
@@ -112,8 +138,9 @@
 				3BD99FDD2908E46D0019F278 /* Networking */,
 				3BD99FD22908A8290019F278 /* Extensiion+files */,
 				3BD99FD12908A43F0019F278 /* Models */,
-				3BD99FD02908A4380019F278 /* Cells */,
-				3BD99FCF2908A42E0019F278 /* Controllers */,
+				3BCFFA092909DD96000D87FC /* Home */,
+				3BD99FCF2908A42E0019F278 /* Search */,
+				3BCFFA0B2909DE2E000D87FC /* Favorite */,
 				3BD99FCE2908A2930019F278 /* Resources */,
 			);
 			path = SpoonacularAPI;
@@ -147,14 +174,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		3BD99FCF2908A42E0019F278 /* Controllers */ = {
+		3BD99FCF2908A42E0019F278 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				3BD99FA22908A25F0019F278 /* HomeViewController.swift */,
 				3BD99FD52908B0AC0019F278 /* SearchRecipeViewController.swift */,
-				3BD99FE2290923EC0019F278 /* DetailsViewController.swift */,
+				3BD99FD02908A4380019F278 /* Cells */,
+				3BCFFA0A2909DDE4000D87FC /* Details */,
 			);
-			name = Controllers;
+			name = Search;
 			sourceTree = "<group>";
 		};
 		3BD99FD02908A4380019F278 /* Cells */ = {
@@ -324,6 +351,7 @@
 				3BD99FD82908B6D40019F278 /* RecipeCell.swift in Sources */,
 				3BD99FDF2908E4880019F278 /* NetworkError.swift in Sources */,
 				3BD99FD62908B0AC0019F278 /* SearchRecipeViewController.swift in Sources */,
+				3BCFFA0D2909DE80000D87FC /* FavoriteViewController.swift in Sources */,
 				3BD99FD42908A8550019F278 /* Factories.swift in Sources */,
 				3BD99FDC2908DF1F0019F278 /* ResipeModel.swift in Sources */,
 				3BD99FA32908A25F0019F278 /* HomeViewController.swift in Sources */,

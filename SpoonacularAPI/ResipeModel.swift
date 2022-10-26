@@ -15,32 +15,30 @@ struct Recipe: Decodable {
     let id: Int
     let title: String
     let imageURL: String
-//    let nutrition: Nutrition
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case title = "title"
         case imageURL = "image"
-//        case nutrition = "nutrition"
     }
 }
 
-//struct Nutrition: Decodable {
-//    let nutrients: [Fat]
-//
-//    enum CodingKeys: String, CodingKey {
-//        case nutrients = "nutrients"
-//    }
-//}
-//
-//struct Fat: Decodable {
-//    let name: String
-//    let amount: Float
-//    let unit: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case name = "name"
-//        case amount = "amount"
-//        case unit = "unit"
-//    }
-//}
+struct Details: Decodable, Equatable {
+    let id: Int
+    let title: String
+    let timeForPreparing: Int?
+    let imageURL: String?
+    let recipeDescription: String?
+    let instruction: String?
+    let servings: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case title = "title"
+        case timeForPreparing = "readyInMinutes"
+        case imageURL = "image"
+        case recipeDescription = "summary"
+        case instruction = "instructions"
+        case servings = "servings"
+    }
+}
