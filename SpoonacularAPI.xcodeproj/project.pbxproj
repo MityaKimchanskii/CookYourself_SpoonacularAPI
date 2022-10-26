@@ -8,14 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		3BD99F9F2908A25F0019F278 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99F9E2908A25F0019F278 /* AppDelegate.swift */; };
-		3BD99FA12908A25F0019F278 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FA02908A25F0019F278 /* SceneDelegate.swift */; };
-		3BD99FA32908A25F0019F278 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FA22908A25F0019F278 /* ViewController.swift */; };
-		3BD99FA62908A25F0019F278 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD99FA42908A25F0019F278 /* Main.storyboard */; };
+		3BD99FA32908A25F0019F278 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FA22908A25F0019F278 /* HomeViewController.swift */; };
 		3BD99FA82908A2610019F278 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD99FA72908A2610019F278 /* Assets.xcassets */; };
 		3BD99FAB2908A2610019F278 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD99FA92908A2610019F278 /* LaunchScreen.storyboard */; };
 		3BD99FB62908A2610019F278 /* SpoonacularAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FB52908A2610019F278 /* SpoonacularAPITests.swift */; };
 		3BD99FC02908A2610019F278 /* SpoonacularAPIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FBF2908A2610019F278 /* SpoonacularAPIUITests.swift */; };
 		3BD99FC22908A2610019F278 /* SpoonacularAPIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FC12908A2610019F278 /* SpoonacularAPIUITestsLaunchTests.swift */; };
+		3BD99FD42908A8550019F278 /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FD32908A8550019F278 /* Factories.swift */; };
+		3BD99FD62908B0AC0019F278 /* SearchRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FD52908B0AC0019F278 /* SearchRecipeViewController.swift */; };
+		3BD99FD82908B6D40019F278 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FD72908B6D40019F278 /* RecipeCell.swift */; };
+		3BD99FDC2908DF1F0019F278 /* ResipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FDB2908DF1F0019F278 /* ResipeModel.swift */; };
+		3BD99FDF2908E4880019F278 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FDE2908E4880019F278 /* NetworkError.swift */; };
+		3BD99FE12908E5380019F278 /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FE02908E5380019F278 /* RecipeManager.swift */; };
+		3BD99FE3290923EC0019F278 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99FE2290923EC0019F278 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +43,7 @@
 /* Begin PBXFileReference section */
 		3BD99F9B2908A25F0019F278 /* SpoonacularAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpoonacularAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD99F9E2908A25F0019F278 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3BD99FA02908A25F0019F278 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3BD99FA22908A25F0019F278 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3BD99FA52908A25F0019F278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3BD99FA22908A25F0019F278 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3BD99FA72908A2610019F278 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BD99FAA2908A2610019F278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BD99FAC2908A2610019F278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +52,13 @@
 		3BD99FBB2908A2610019F278 /* SpoonacularAPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpoonacularAPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD99FBF2908A2610019F278 /* SpoonacularAPIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIUITests.swift; sourceTree = "<group>"; };
 		3BD99FC12908A2610019F278 /* SpoonacularAPIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3BD99FD32908A8550019F278 /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
+		3BD99FD52908B0AC0019F278 /* SearchRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewController.swift; sourceTree = "<group>"; };
+		3BD99FD72908B6D40019F278 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		3BD99FDB2908DF1F0019F278 /* ResipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResipeModel.swift; sourceTree = "<group>"; };
+		3BD99FDE2908E4880019F278 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		3BD99FE02908E5380019F278 /* RecipeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeManager.swift; sourceTree = "<group>"; };
+		3BD99FE2290923EC0019F278 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +109,12 @@
 		3BD99F9D2908A25F0019F278 /* SpoonacularAPI */ = {
 			isa = PBXGroup;
 			children = (
-				3BD99F9E2908A25F0019F278 /* AppDelegate.swift */,
-				3BD99FA02908A25F0019F278 /* SceneDelegate.swift */,
-				3BD99FA22908A25F0019F278 /* ViewController.swift */,
-				3BD99FA42908A25F0019F278 /* Main.storyboard */,
-				3BD99FA72908A2610019F278 /* Assets.xcassets */,
-				3BD99FA92908A2610019F278 /* LaunchScreen.storyboard */,
-				3BD99FAC2908A2610019F278 /* Info.plist */,
+				3BD99FDD2908E46D0019F278 /* Networking */,
+				3BD99FD22908A8290019F278 /* Extensiion+files */,
+				3BD99FD12908A43F0019F278 /* Models */,
+				3BD99FD02908A4380019F278 /* Cells */,
+				3BD99FCF2908A42E0019F278 /* Controllers */,
+				3BD99FCE2908A2930019F278 /* Resources */,
 			);
 			path = SpoonacularAPI;
 			sourceTree = "<group>";
@@ -125,6 +134,60 @@
 				3BD99FC12908A2610019F278 /* SpoonacularAPIUITestsLaunchTests.swift */,
 			);
 			path = SpoonacularAPIUITests;
+			sourceTree = "<group>";
+		};
+		3BD99FCE2908A2930019F278 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99F9E2908A25F0019F278 /* AppDelegate.swift */,
+				3BD99FA92908A2610019F278 /* LaunchScreen.storyboard */,
+				3BD99FA72908A2610019F278 /* Assets.xcassets */,
+				3BD99FAC2908A2610019F278 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3BD99FCF2908A42E0019F278 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99FA22908A25F0019F278 /* HomeViewController.swift */,
+				3BD99FD52908B0AC0019F278 /* SearchRecipeViewController.swift */,
+				3BD99FE2290923EC0019F278 /* DetailsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3BD99FD02908A4380019F278 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99FD72908B6D40019F278 /* RecipeCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		3BD99FD12908A43F0019F278 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99FDB2908DF1F0019F278 /* ResipeModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3BD99FD22908A8290019F278 /* Extensiion+files */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99FD32908A8550019F278 /* Factories.swift */,
+			);
+			name = "Extensiion+files";
+			sourceTree = "<group>";
+		};
+		3BD99FDD2908E46D0019F278 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3BD99FDE2908E4880019F278 /* NetworkError.swift */,
+				3BD99FE02908E5380019F278 /* RecipeManager.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +296,6 @@
 			files = (
 				3BD99FAB2908A2610019F278 /* LaunchScreen.storyboard in Resources */,
 				3BD99FA82908A2610019F278 /* Assets.xcassets in Resources */,
-				3BD99FA62908A25F0019F278 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +320,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BD99FA32908A25F0019F278 /* ViewController.swift in Sources */,
+				3BD99FE3290923EC0019F278 /* DetailsViewController.swift in Sources */,
+				3BD99FD82908B6D40019F278 /* RecipeCell.swift in Sources */,
+				3BD99FDF2908E4880019F278 /* NetworkError.swift in Sources */,
+				3BD99FD62908B0AC0019F278 /* SearchRecipeViewController.swift in Sources */,
+				3BD99FD42908A8550019F278 /* Factories.swift in Sources */,
+				3BD99FDC2908DF1F0019F278 /* ResipeModel.swift in Sources */,
+				3BD99FA32908A25F0019F278 /* HomeViewController.swift in Sources */,
+				3BD99FE12908E5380019F278 /* RecipeManager.swift in Sources */,
 				3BD99F9F2908A25F0019F278 /* AppDelegate.swift in Sources */,
-				3BD99FA12908A25F0019F278 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +365,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3BD99FA42908A25F0019F278 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3BD99FA52908A25F0019F278 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3BD99FA92908A2610019F278 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,9 +502,8 @@
 				INFOPLIST_FILE = SpoonacularAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,9 +511,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dmitriikim.SpoonacularAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -470,9 +532,8 @@
 				INFOPLIST_FILE = SpoonacularAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,9 +541,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dmitriikim.SpoonacularAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

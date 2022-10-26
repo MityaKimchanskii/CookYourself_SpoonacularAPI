@@ -7,30 +7,70 @@
 
 import UIKit
 
+class SpoonacularViewController: UIViewController {
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func commonInit() {}
+    
+    func setTabBarImage(imageName: String, title: String) {
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let image = UIImage(systemName: imageName, withConfiguration: configuration)
+        tabBarItem = UITabBarItem(title: title, image: image, tag: 0)
+    }
+}
+
+
+
+class FavoriteViewController: SpoonacularViewController {
+    override func viewDidLoad() {
+        title = "Favorite"
+//        view.backgroundColor = .systemCyan
+    }
+    
+    override func commonInit() {
+        setTabBarImage(imageName: "heart.circle", title: "Favorite")
+    }
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.backgroundColor = .white
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let homeVC = HomeViewController()
+        let searchVC = SearchRecipeViewController()
+        let favoriteVC = FavoriteViewController()
+        
+        let homeNC = UINavigationController(rootViewController: homeVC)
+        let favoriteNC = UINavigationController(rootViewController: favoriteVC)
+        let searchNC = UINavigationController(rootViewController: searchVC)
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homeNC, searchNC, favoriteNC]
+        
+        tabBarController.tabBar.tintColor = .lightGreen
+        tabBarController.tabBar.isTranslucent = false
+        
+        window?.rootViewController = tabBarController
+        
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
 }
+
+
 
