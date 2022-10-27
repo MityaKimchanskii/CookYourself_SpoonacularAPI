@@ -15,7 +15,7 @@ protocol WelcomeContainerViewControllerDelegate: AnyObject {
 class WelcomeContainerViewController: UIViewController {
 
     let pageViewController: UIPageViewController
-    let closeButton = UIButton(type: .system)
+    let closeButton = UIButton()
 
     weak var delegate: WelcomeContainerViewControllerDelegate?
     
@@ -72,8 +72,9 @@ class WelcomeContainerViewController: UIViewController {
     }
     
     private func style() {
+        closeButton.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        closeButton.tintColor = .red
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.setTitle("Close", for: [])
         closeButton.addTarget(self, action: #selector(closeTapped), for: .primaryActionTriggered)
     }
     
@@ -81,8 +82,8 @@ class WelcomeContainerViewController: UIViewController {
         view.addSubview(closeButton)
 
         NSLayoutConstraint.activate([
-            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
-            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2)
+            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 3),
+            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 3)
         ])
     }
 }

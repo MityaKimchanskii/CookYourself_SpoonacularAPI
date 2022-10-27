@@ -10,6 +10,7 @@
 		3BBDFF62290AFB6600DB41CF /* FavoriteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDFF61290AFB6600DB41CF /* FavoriteDetailsViewController.swift */; };
 		3BBDFF6A290B144100DB41CF /* WelcomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDFF68290B144100DB41CF /* WelcomeContainerViewController.swift */; };
 		3BBDFF6B290B144100DB41CF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDFF69290B144100DB41CF /* WelcomeViewController.swift */; };
+		3BBDFF74290B264E00DB41CF /* SpoonacularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDFF73290B264E00DB41CF /* SpoonacularViewController.swift */; };
 		3BCFFA0D2909DE80000D87FC /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCFFA0C2909DE80000D87FC /* FavoriteViewController.swift */; };
 		3BCFFA102909F92B000D87FC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3BCFFA0F2909F92B000D87FC /* Realm */; };
 		3BCFFA122909F92B000D87FC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BCFFA112909F92B000D87FC /* RealmSwift */; };
@@ -53,6 +54,7 @@
 		3BBDFF61290AFB6600DB41CF /* FavoriteDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailsViewController.swift; sourceTree = "<group>"; };
 		3BBDFF68290B144100DB41CF /* WelcomeContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeContainerViewController.swift; sourceTree = "<group>"; };
 		3BBDFF69290B144100DB41CF /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		3BBDFF73290B264E00DB41CF /* SpoonacularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularViewController.swift; sourceTree = "<group>"; };
 		3BCFFA0C2909DE80000D87FC /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		3BCFFA132909F9DE000D87FC /* FavoriteRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipe.swift; sourceTree = "<group>"; };
 		3BCFFA15290A05FB000D87FC /* FavoriteRecipeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeManager.swift; sourceTree = "<group>"; };
@@ -108,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				3BBDFF68290B144100DB41CF /* WelcomeContainerViewController.swift */,
-				3BBDFF69290B144100DB41CF /* WelcomeViewController.swift */,
 			);
 			name = Welcome;
 			sourceTree = "<group>";
@@ -233,6 +234,8 @@
 		3BD99FD22908A8290019F278 /* Extensiion+files */ = {
 			isa = PBXGroup;
 			children = (
+				3BBDFF69290B144100DB41CF /* WelcomeViewController.swift */,
+				3BBDFF73290B264E00DB41CF /* SpoonacularViewController.swift */,
 				3BD99FD32908A8550019F278 /* Factories.swift */,
 			);
 			name = "Extensiion+files";
@@ -391,6 +394,7 @@
 				3BBDFF62290AFB6600DB41CF /* FavoriteDetailsViewController.swift in Sources */,
 				3BD99FD62908B0AC0019F278 /* SearchRecipeViewController.swift in Sources */,
 				3BCFFA142909F9DE000D87FC /* FavoriteRecipe.swift in Sources */,
+				3BBDFF74290B264E00DB41CF /* SpoonacularViewController.swift in Sources */,
 				3BCFFA0D2909DE80000D87FC /* FavoriteViewController.swift in Sources */,
 				3BCFFA16290A05FB000D87FC /* FavoriteRecipeManager.swift in Sources */,
 				3BD99FD42908A8550019F278 /* Factories.swift in Sources */,

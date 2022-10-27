@@ -3,7 +3,12 @@
 The following features are implemented:
 
 * [+] No Storyboard
-* [+] MVC
+* [+] JSON 
+* [+] REST API
+* [+] UITableView
+* [+] Delegate Design Pattern
+* [+] Realm Database
+* [+] Save, read, remove favorite to Realm
 * [+] JSON 
 * [+] REST API
 

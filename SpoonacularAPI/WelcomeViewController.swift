@@ -10,7 +10,6 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
-    let stackView = UIStackView()
     let imageView = UIImageView()
     let titleLabel = UILabel()
     
@@ -39,13 +38,9 @@ extension WelcomeViewController {
     func style() {
         view.backgroundColor = .systemBackground
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        
         // Image
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: imageName)
         
         // Label
@@ -54,20 +49,23 @@ extension WelcomeViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textColor = .lightGreen
+        titleLabel.numberOfLines = 0
         titleLabel.text = titleText
     }
     
     func layout() {
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(titleLabel)
-        
-        view.addSubview(stackView)
+        view.addSubview(imageView)
+        view.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1)
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 250),
+            imageView.heightAnchor.constraint(equalToConstant: 250),
+            
+            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: imageView.bottomAnchor, multiplier: 2),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalToConstant: 250)
         ])
     }
 }
