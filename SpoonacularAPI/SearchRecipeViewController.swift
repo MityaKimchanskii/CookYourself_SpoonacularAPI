@@ -94,6 +94,11 @@ extension SearchRecipeViewController {
                     self?.recipeTableView.reloadData()
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Attention", message: "You have reached the limit of calls to the Server, please switch to another plan.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self!.present(alert, animated: true)
+                }
                 print("Error in \(#function): \(error.localizedDescription) \n---\n \(error)")
             }
         }
