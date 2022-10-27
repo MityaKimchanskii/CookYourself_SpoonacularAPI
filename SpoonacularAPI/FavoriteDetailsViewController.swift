@@ -1,25 +1,20 @@
 //
-//  DetailViewController.swift
+//  FavoriteDetailsViewController.swift
 //  SpoonacularAPI
 //
-//  Created by Mitya Kim on 10/26/22.
+//  Created by Mitya Kim on 10/27/22.
 //
 
+import Foundation
 import UIKit
-import RealmSwift
 
-class DetailsViewController: UIViewController {
+class FavoriteDetailsViewController: UIViewController {
     
     // MARK: - Properties
-    var recipe: Recipe?
-    var id: Int?
-    var details: Details?
-    private var favoriteRecipeResult: Results<FavoriteRecipe>?
-    private var spriteImages = [UIImage]()
+    var favoriteRecipe: FavoriteRecipe?
     
     // MARK: - Views
     private let closeButton = UIButton()
-    private let favoriteButton = UIButton()
     private let titleLabel = UILabel()
     private let imageView = UIImageView()
     private let scrollView = UIScrollView()
@@ -29,7 +24,6 @@ class DetailsViewController: UIViewController {
     private let servingsLabel = UILabel()
     private let instructionTitleLabel = UILabel()
     private let recipeDescriptionTitleLabel = UILabel()
-    private let heartImage = UIImageView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -38,15 +32,13 @@ class DetailsViewController: UIViewController {
         setup()
         layout()
         fetchImage()
-        fetchDetails()
-        fetchAllFavoriteFromRealm()
+        favoriteDetails()
         activateCloseButton()
-        activateFavoriteButton()
     }
 }
 
 // MARK: - Extension Actions
-extension DetailsViewController {
+extension FavoriteDetailsViewController {
     @objc private func closeButtonTapped(sender: UIButton) {
         self.dismiss(animated: true)
     }
@@ -54,29 +46,15 @@ extension DetailsViewController {
     private func activateCloseButton() {
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     }
-    
-    @objc private func favoriteButtonTapped(sender: UIButton) {
-        twitterAnimation()
-        saveFavoriteToRealm()
-    }
-    
-    private func activateFavoriteButton() {
-        favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
-    }
 }
 
 // MARK: - Extensions Helper Methods
-extension DetailsViewController {
+extension FavoriteDetailsViewController {
     private func setup() {
         // closeButton
         closeButton.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
         closeButton.tintColor = .red
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        // favoriteButton
-        favoriteButton.setImage(UIImage(systemName: "heart.circle"), for: .normal)
-        favoriteButton.tintColor = .lightGreen
-        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         
         // titleLabel
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
@@ -132,19 +110,12 @@ extension DetailsViewController {
         instructionLabel.lineBreakMode = .byWordWrapping
         instructionLabel.textAlignment = .justified
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        // heartImage
-        heartImage.image = UIImage(named: "tile00")
-        heartImage.translatesAutoresizingMaskIntoConstraints = false
-        heartImage.alpha = 0.5
     }
     
     private func layout() {
         view.addSubview(closeButton)
-        view.addSubview(favoriteButton)
         view.addSubview(imageView)
         view.addSubview(titleLabel)
-        view.addSubview(heartImage)
         view.addSubview(scrollView)
         
         scrollView.addSubview(stackView)
@@ -161,19 +132,11 @@ extension DetailsViewController {
             closeButton.heightAnchor.constraint(equalToConstant: 50),
             closeButton.widthAnchor.constraint(equalToConstant: 50),
             
-            // favoriteButton
-            favoriteButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: favoriteButton.trailingAnchor, multiplier: 1),
-            favoriteButton.heightAnchor.constraint(equalToConstant: 50),
-            favoriteButton.widthAnchor.constraint(equalToConstant: 50),
-            
             // titleLabel
             titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: closeButton.bottomAnchor, multiplier: 1),
             titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 1),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-            
             // imageView
             imageView.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 1),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -191,19 +154,13 @@ extension DetailsViewController {
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: view.bounds.width - 32),
-            
-            // heartImage
-            heartImage.heightAnchor.constraint(equalToConstant: 200),
-            heartImage.widthAnchor.constraint(equalToConstant: 200),
-            heartImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            heartImage.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.widthAnchor.constraint(equalToConstant: view.bounds.width - 32)
         ])
     }
     
     private func fetchImage() {
-        guard let recipe = recipe else { return }
-        RecipeManager.shared.fetchImage(recipe: recipe) { [weak self] result in
+        guard let favoriteRecipe = favoriteRecipe else { return }
+        FavoriteRecipeManager.shared.fetchImageForFavoriteRecipe(favoriteRecipe: favoriteRecipe) { [weak self] result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
@@ -215,74 +172,18 @@ extension DetailsViewController {
         }
     }
     
-    private func fetchDetails() {
-        guard let id = id else { return }
-        RecipeManager.shared.fetchRecipeDetails(with: id) { [weak self] result in
-            switch result {
-            case .success(let details):
-                DispatchQueue.main.async {
-                    self?.details = details
-                    self?.titleLabel.text = details.title
-                    
-                    guard let persons = details.servings else { return }
-                    self?.servingsLabel.text = "Dish for \(persons) persons"
-                    
-                    guard let str2 = details.recipeDescription else { return }
-                    let description = str2.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-                    self?.recipeDescriptionLabel.text = description
-                    
-                    guard let str1 = details.instruction else { return }
-                    let instruction = str1.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-                    self?.instructionLabel.text = instruction
-                }
-            case .failure(let error):
-                print("Error in \(#function): \(error.localizedDescription) \n---\n \(error)")
-            }
-        }
-    }
-    
-    private func fetchAllFavoriteFromRealm() {
-        guard let result = FavoriteRecipeManager.shared.fetchAllFavoriteRecipes() else { return }
-        favoriteRecipeResult = result
-    }
-    
-    private func saveFavoriteToRealm() {
-        guard let details = details else { return }
-        let newFavoriteRecipe = FavoriteRecipe()
-        newFavoriteRecipe.title = details.title
-        newFavoriteRecipe.id = details.id
-        newFavoriteRecipe.descriptionData = details.recipeDescription ?? ""
-        newFavoriteRecipe.instructionData = details.instruction ?? ""
-        newFavoriteRecipe.imageURL = details.imageURL ?? ""
-        newFavoriteRecipe.numberOfPersons = details.servings ?? 0
-        guard let results = favoriteRecipeResult else { return }
+    private func favoriteDetails() {
+        guard let favoriteRecipe = favoriteRecipe else { return }
+        titleLabel.text = favoriteRecipe.title
+        servingsLabel.text = "Dish for \(favoriteRecipe.numberOfPersons) persons"
         
-        var idArray = [Int]()
-        for result in results {
-            idArray.append(result.id)
-        }
-        if !idArray.contains(newFavoriteRecipe.id) {
-            FavoriteRecipeManager.shared.saveFavoriteRecipe(favoriteRecipe: newFavoriteRecipe)
-            print("Favorite Recipe successfully saved!")
-        } else {
-            print("You alredy have that Recipe!")
-        }
+        let description = favoriteRecipe.descriptionData.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        recipeDescriptionLabel.text = description
+        
+        let instruction = favoriteRecipe.instructionData.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        instructionLabel.text = instruction
     }
 }
 
 // MARK: - Extension UIScrollView
-extension DetailsViewController: UIScrollViewDelegate {}
-
-// MARK: - Animation
-extension DetailsViewController {
-    private func twitterAnimation() {
-        heartImage.animationImages = spriteImages
-        heartImage.animationDuration = 3
-        heartImage.animationRepeatCount = 1
-        heartImage.startAnimating()
-        
-        for i in 0..<29 {
-            spriteImages.append(UIImage(named: "tile0\(i)")!)
-        }
-    }
-}
+extension FavoriteDetailsViewController: UIScrollViewDelegate {}

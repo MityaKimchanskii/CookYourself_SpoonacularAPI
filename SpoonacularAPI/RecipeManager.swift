@@ -7,6 +7,7 @@
 //https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=2&apiKey=dc1338c2ac034a59a1bc3f8869e3dc30 - search url
 //https://api.spoonacular.com/recipes/{id}/information?apiKey=dc1338c2ac034a59a1bc3f8869e3dc30 - details url
 //https://api.spoonacular.com/recipes/654959/information?apiKey=dc1338c2ac034a59a1bc3f8869e3dc30 - details url
+//https://api.spoonacular.com/food/jokes/random?apiKey=dc1338c2ac034a59a1bc3f8869e3dc30
 
 import UIKit
 
@@ -18,6 +19,9 @@ class RecipeManager {
     let recipesComponent = "recipes"
     let complexSearchComponent = "complexSearch"
     let informationComponent = "information"
+    let foodComponent = "food"
+    let jokesComponent = "jokes"
+    let randomComponent = "random"
     let queryKey = "query"
     let numberKey = "number"
     let numberKeyValue = "20"
@@ -66,7 +70,6 @@ class RecipeManager {
     }
     
     func fetchImage(recipe: Recipe, completion: @escaping (Result<UIImage, NetworkError>) -> Void) {
-//        guard let image = recipe.imageURL else { return }
         guard let baseURLForImage = URL(string: recipe.imageURL) else { return completion(.failure(.invalidURL)) }
        
         URLSession.shared.dataTask(with: baseURLForImage) { (data, response, error) in
@@ -114,6 +117,37 @@ class RecipeManager {
                 let recipeDetails = try JSONDecoder().decode(Details.self, from: data)
                 let resultDetails = recipeDetails
                 return completion(.success(resultDetails))
+            } catch {
+                return completion(.failure(.unableToDecode))
+            }
+        }.resume()
+    }
+    
+    func fetchRundomJoke(completion: @escaping (Result<Joke, NetworkError>) -> Void) {
+        guard let baseURL = baseURL else { return completion(.failure(.invalidURL)) }
+        let foodURL = baseURL.appendingPathComponent(foodComponent)
+        let jokesURL = foodURL.appendingPathComponent(jokesComponent)
+        let randomURL = jokesURL.appendingPathComponent(randomComponent)
+        
+        var components = URLComponents(url: randomURL, resolvingAgainstBaseURL: true)
+        let apiQuery = URLQueryItem(name: apiKey, value: apiKeyValue)
+        components?.queryItems = [apiQuery]
+        
+        guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
+        
+        // check url in console
+        print(finalURL)
+
+        URLSession.shared.dataTask(with: finalURL) { data, _, error in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            
+            guard let data = data else { return completion(.failure(.noData)) }
+            
+            do {
+                let joke = try JSONDecoder().decode(Joke.self, from: data)
+                return completion(.success(joke))
             } catch {
                 return completion(.failure(.unableToDecode))
             }

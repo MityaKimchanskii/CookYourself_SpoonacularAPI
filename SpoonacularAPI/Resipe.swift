@@ -42,3 +42,11 @@ struct Details: Decodable, Equatable {
         case servings = "servings"
     }
 }
+
+struct Joke: Decodable {
+    let text: String
+    
+    enum CodingKeys: String, CodingKey {
+        case text = "text"
+    }
+}

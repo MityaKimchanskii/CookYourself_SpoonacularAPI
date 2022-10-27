@@ -38,6 +38,7 @@ class RecipeCell: UITableViewCell {
 // MARK: - Extensions Helper Methods
 extension RecipeCell {
     private func setup() {
+        self.selectionStyle = .none
         recipeImageView.translatesAutoresizingMaskIntoConstraints = false
         recipeImageView.contentMode = .scaleAspectFill
         recipeImageView.clipsToBounds = true

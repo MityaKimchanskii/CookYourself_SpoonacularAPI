@@ -23,9 +23,8 @@ class SearchRecipeViewController: SpoonacularViewController {
         title = "Search Recipe"
         
         hideKeyboardWhenTappedAround()
-        setup()
+        style()
         layout()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,7 +39,7 @@ class SearchRecipeViewController: SpoonacularViewController {
 
 // MARK: - Extension  Helper Methods
 extension SearchRecipeViewController {
-    private func setup() {
+    private func style() {
         // imageView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -57,6 +56,7 @@ extension SearchRecipeViewController {
         recipeTableView.delegate = self
         recipeTableView.dataSource = self
         recipeTableView.register(RecipeCell.self, forCellReuseIdentifier: RecipeCell.reuseID)
+        recipeTableView.separatorColor = .lightGreen
     }
 
     private func layout() {
@@ -150,24 +150,3 @@ extension SearchRecipeViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - Extension Animation
-extension SearchRecipeViewController {
-    func boundsKeyFrameAnimation() -> CAKeyframeAnimation {
-        let bounce = CAKeyframeAnimation(keyPath: "position")
-        bounce.duration = 5
-        bounce.values = [
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 - 45, y: UIScreen.main.bounds.height/2 + 45)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 - 50, y: UIScreen.main.bounds.height/2 - 50)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 + 45, y: UIScreen.main.bounds.height/2 - 45)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 + 50, y: UIScreen.main.bounds.height/2 + 50)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 - 45, y: UIScreen.main.bounds.height/2 + 45)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 - 50, y: UIScreen.main.bounds.height/2 - 50)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 + 45, y: UIScreen.main.bounds.height/2 - 45)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 + 50, y: UIScreen.main.bounds.height/2 + 50)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 - 45, y: UIScreen.main.bounds.height/2 + 45)),
-            NSValue(cgPoint: CGPoint(x: UIScreen.main.bounds.width/2 - 50, y: UIScreen.main.bounds.height/2 - 50)),
-        ]
-        bounce.keyTimes =  [0.0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-        return bounce
-    }
-}
