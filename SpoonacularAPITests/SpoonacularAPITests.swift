@@ -29,10 +29,8 @@ class SpoonacularAPITests: XCTestCase {
           ]
         """
         
-        // Game on here 🕹
         let data = json.data(using: .utf8)!
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
         
         let result = try decoder.decode([Details].self, from: data)
         
