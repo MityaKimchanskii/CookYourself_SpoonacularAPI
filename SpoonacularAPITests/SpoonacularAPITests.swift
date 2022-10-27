@@ -8,29 +8,44 @@
 import XCTest
 @testable import SpoonacularAPI
 
-final class SpoonacularAPITests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class SpoonacularAPITests: XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testCanParse() throws {
+        let json = """
+         [
+           {
+             "id": 78023,
+             "title": "Pasta With Tuna",
+             "timeForPreparing": 3,
+             "imageURL" : "https://spoonacular.com/recipeImages/654959-556x370.jpg",
+             "recipeDescription": "Pasta With Tuna might be just the main course you are searching for.",
+             "instruction": "Cook pasta in a large pot of boiling water until al dente.",
+             "servings": 3,
+           }
+          ]
+        """
+        
+        // Game on here 🕹
+        let data = json.data(using: .utf8)!
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        let result = try decoder.decode([Details].self, from: data)
+        
+        XCTAssertEqual(result.count, 2)
+        
+        let recipe = result[0]
+        XCTAssertEqual(recipe.id, 78023)
+        XCTAssertEqual(recipe.title, "Pasta With Tuna")
+        XCTAssertEqual(recipe.timeForPreparing, 3)
+        XCTAssertEqual(recipe.imageURL, "https://spoonacular.com/recipeImages/654959-556x370.jpg")
+        XCTAssertEqual(recipe.recipeDescription, "Pasta With Tuna might be just the main course you are searching for.")
+        XCTAssertEqual(recipe.instruction, "Cook pasta in a large pot of boiling water until al dente.")
+        XCTAssertEqual(recipe.servings, 3)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
+
