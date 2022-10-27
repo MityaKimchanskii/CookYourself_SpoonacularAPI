@@ -10,10 +10,11 @@ The following features are implemented:
 * [+] Realm Database
 * [+] CRUD for RealmDB
 * [+] Core Animation
-* [+] REST API
+* [+] XCTests
 * [+] Package Dependencies
 * [+] UINavigationController
 * [+] UITabBarController
+
 
 
 Here's a walkthrough of implemented user stories:
