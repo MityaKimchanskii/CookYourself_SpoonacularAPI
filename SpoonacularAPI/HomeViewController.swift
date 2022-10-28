@@ -106,9 +106,7 @@ extension HomeViewController {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Attention", message: "You have reached the limit of requests to the Server, please switch to another plan.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self!.present(alert, animated: true)
+                    self?.attentionAlert()
                 }
                 print("Error in \(#function): \(error.localizedDescription) \n---\n \(error)")
             }

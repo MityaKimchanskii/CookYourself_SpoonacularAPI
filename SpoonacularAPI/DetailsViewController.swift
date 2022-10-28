@@ -194,10 +194,10 @@ extension DetailsViewController {
             stackView.widthAnchor.constraint(equalToConstant: view.bounds.width - 32),
             
             // heartImage
-            heartImage.heightAnchor.constraint(equalToConstant: 200),
-            heartImage.widthAnchor.constraint(equalToConstant: 200),
+            heartImage.heightAnchor.constraint(equalToConstant: 150),
+            heartImage.widthAnchor.constraint(equalToConstant: 150),
             heartImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            heartImage.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            heartImage.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 0),
         ])
     }
     
@@ -210,6 +210,7 @@ extension DetailsViewController {
                     self?.imageView.image = image
                 }
             case .failure(let error):
+                self?.attentionAlert()
                 print("Error in \(#function): \(error.localizedDescription) \n---\n \(error)")
             }
         }
@@ -236,6 +237,9 @@ extension DetailsViewController {
                     self?.instructionLabel.text = instruction
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.attentionAlert()
+                }
                 print("Error in \(#function): \(error.localizedDescription) \n---\n \(error)")
             }
         }
@@ -265,6 +269,9 @@ extension DetailsViewController {
             FavoriteRecipeManager.shared.saveFavoriteRecipe(favoriteRecipe: newFavoriteRecipe)
             print("Favorite Recipe successfully saved!")
         } else {
+            let alert = UIAlertController(title: "Looks very tasty!", message: "You already have this recipe in your favorites.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
             print("You alredy have that Recipe!")
         }
     }

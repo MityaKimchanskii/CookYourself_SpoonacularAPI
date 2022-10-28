@@ -61,9 +61,8 @@ extension FavoriteViewController {
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            // imageView
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.topAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 20),
+            imageView.trailingAnchor.constraint(equalToSystemSpacingAfter: view.trailingAnchor, multiplier: 20),
             imageView.heightAnchor.constraint(equalToConstant: 150),
             imageView.widthAnchor.constraint(equalToConstant: 150),
             

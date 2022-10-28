@@ -67,8 +67,8 @@ extension SearchRecipeViewController {
         
         NSLayoutConstraint.activate([
             // imageView
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.topAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 20),
+            imageView.trailingAnchor.constraint(equalToSystemSpacingAfter: view.trailingAnchor, multiplier: 20),
             imageView.heightAnchor.constraint(equalToConstant: 150),
             imageView.widthAnchor.constraint(equalToConstant: 150),
             
@@ -95,9 +95,7 @@ extension SearchRecipeViewController {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Attention", message: "You have reached the limit of calls to the Server, please switch to another plan.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self!.present(alert, animated: true)
+                    self?.attentionAlert()
                 }
                 print("Error in \(#function): \(error.localizedDescription) \n---\n \(error)")
             }

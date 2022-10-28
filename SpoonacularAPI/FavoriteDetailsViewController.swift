@@ -167,6 +167,7 @@ extension FavoriteDetailsViewController {
                     self?.imageView.image = image
                 }
             case .failure(let error):
+                self?.attentionAlert()
                 print("Error in \(#function): \(error.localizedDescription) \n---\n \(error)")
             }
         }

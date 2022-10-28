@@ -16,7 +16,7 @@ class SpoonacularAPITests: XCTestCase {
     
     func testCanParse() throws {
         let json = """
-         [
+          [
            {
              "id": 78023,
              "title": "Pasta With Tuna",
