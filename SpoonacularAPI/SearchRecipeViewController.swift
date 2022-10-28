@@ -60,7 +60,6 @@ extension SearchRecipeViewController {
     }
 
     private func layout() {
-        
         view.addSubview(searchBar)
         view.addSubview(recipeTableView)
         view.addSubview(imageView)

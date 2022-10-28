@@ -14,6 +14,7 @@ protocol WelcomeContainerViewControllerDelegate: AnyObject {
 
 class WelcomeContainerViewController: UIViewController {
 
+    // MARK: - Views
     let pageViewController: UIPageViewController
     let closeButton = UIButton()
 
@@ -42,6 +43,7 @@ class WelcomeContainerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,7 +51,10 @@ class WelcomeContainerViewController: UIViewController {
         style()
         layout()
     }
-        
+}
+
+// MARK: - Helper Methods
+extension WelcomeContainerViewController {
     private func setup() {
         view.backgroundColor = .lightGreen
         

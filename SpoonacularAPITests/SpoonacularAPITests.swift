@@ -34,7 +34,7 @@ class SpoonacularAPITests: XCTestCase {
         
         let result = try decoder.decode([Details].self, from: data)
         
-        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.count, 1)
         
         let recipe = result[0]
         XCTAssertEqual(recipe.id, 78023)

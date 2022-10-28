@@ -10,6 +10,7 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
+    // MARK: - Views
     let imageView = UIImageView()
     let titleLabel = UILabel()
     
@@ -27,6 +28,7 @@ class WelcomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented - not using storyboards")
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -34,6 +36,7 @@ class WelcomeViewController: UIViewController {
     }
 }
 
+// MARK: - Helper Methods
 extension WelcomeViewController {
     func style() {
         view.backgroundColor = .systemBackground
